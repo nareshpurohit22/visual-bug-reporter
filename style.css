@@ -1,0 +1,15 @@
+:root { --primary: #2563eb; --danger: #dc2626; --bg: #f8fafc; --text: #1e293b; }
+body { font-family: sans-serif; background-color: var(--bg); color: var(--text); display: flex; justify-content: center; padding: 20px; }
+.container { background: white; width: 100%; max-width: 600px; padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+h1 { color: var(--primary); margin: 0; }
+.input-group { margin-bottom: 15px; }
+label { display: block; font-weight: bold; margin-bottom: 5px; }
+input, select, textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-family: inherit; }
+.button-group { display: flex; gap: 10px; }
+button { flex: 1; padding: 12px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; color: white; }
+button:disabled { background: #cbd5e1; cursor: not-allowed; }
+.btn-record { background: var(--danger); }
+.btn-save { background: var(--primary); }
+.status-indicator { margin-top: 10px; text-align: center; font-size: 0.9rem; color: #64748b; }
+.report-section { margin-top: 20px; background: #1e293b; color: #f1f5f9; padding: 15px; border-radius: 8px; }
+pre { white-space: pre-wrap; word-wrap: break-word; font-size: 0.8rem; }

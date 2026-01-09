@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Visual Bug Reporter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Pro Bug Reporter</h1>
+            <p>Record, Capture, and Document bugs professionally.</p>
+        </header>
+
+        <main class="form-section">
+            <div class="input-group">
+                <label for="bugTitle">Bug Title</label>
+                <input type="text" id="bugTitle" placeholder="e.g., Login button not responding">
+            </div>
+
+            <div class="input-group">
+                <label for="severity">Severity</label>
+                <select id="severity">
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="steps">Steps to Reproduce</label>
+                <textarea id="steps" placeholder="1. Open page&#10;2. Click button&#10;3. See error" rows="3"></textarea>
+            </div>
+
+            <div class="button-group">
+                <button id="startBtn" class="btn-record">Start Recording & Snap</button>
+                <button id="saveBtn" class="btn-save" disabled>Download All Assets</button>
+            </div>
+
+            <div class="status-indicator" id="statusIndicator">Ready</div>
+        </main>
+
+        <section class="report-section">
+            <h3>Generated Report JSON</h3>
+            <pre id="jsonPreview">{ "status": "Waiting for recording..." }</pre>
+        </section>
+    </div>
+    <script src="app.js"></script>
+    if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js');
+}
+</body>
+</html>
+            
