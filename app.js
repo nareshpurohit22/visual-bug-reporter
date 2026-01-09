@@ -61,14 +61,46 @@ document.getElementById('downloadBtn').addEventListener('click', () => {
         videoLink.click();
     }
 
-    // 2. Download the JSON Report (The Error Bugs)
+    document.getElementById('downloadBtn').addEventListener('click', () => {
     const reportText = document.getElementById('jsonPreview').innerText;
-    const jsonBlob = new Blob([reportText], { type: 'application/json' });
-    const jsonUrl = URL.createObjectURL(jsonBlob);
-    const jsonLink = document.createElement('a');
-    jsonLink.href = jsonUrl;
-    jsonLink.download = 'bug-report.json';
-    jsonLink.click();
+
+    // 1. Convert JSON Text to PNG Image
+    const canvas = document.getElementById('reportCanvas');
+    const ctx = canvas.getContext('2d');
+    
+    // Set image size
+    canvas.width = 600;
+    canvas.height = 800;
+    
+    // Draw Background
+    ctx.fillStyle = "#2f3542";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // Draw Text
+    ctx.fillStyle = "#7bed9f";
+    ctx.font = "16px monospace";
+    const lines = reportText.split('\n');
+    lines.forEach((line, i) => {
+        ctx.fillText(line, 20, 40 + (i * 20));
+    });
+
+    // Download the PNG
+    const pngUrl = canvas.toDataURL("image/png");
+    const pngLink = document.createElement('a');
+    pngLink.href = pngUrl;
+    pngLink.download = 'bug-report-visual.png';
+    pngLink.click();
+
+    // 2. Also Download the Video
+    if (recordedChunks.length > 0) {
+        const videoBlob = new Blob(recordedChunks, { type: 'video/webm' });
+        const videoUrl = URL.createObjectURL(videoBlob);
+        const videoLink = document.createElement('a');
+        videoLink.href = videoUrl;
+        videoLink.download = 'bug-video.webm';
+        videoLink.click();
+    }
 });
 
-
+    // 2. Download the JSON Report (The Error Bugs)
+    
