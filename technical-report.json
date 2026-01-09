@@ -1,13 +1,34 @@
 {
-  "title": "JavaScript Parsing Error on User Action",
+  "reportId": "SB-2026-001",
+  "title": "JavaScript Syntax Error During User Action",
   "severity": "medium",
-  "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36",
-  "error": {
-    "type": "SyntaxError",
-    "message": "Unexpected token '<'",
-    "file": "main.js",
-    "line": 12
+  "status": "open",
+  "environment": {
+    "os": "Windows 10 (64-bit)",
+    "browser": "Chrome 143.0.0.0",
+    "engine": "Blink",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
   },
+  "reproductionSteps": [
+    "Open the application",
+    "Navigate to the form page",
+    "Click the Submit button"
+  ],
+  "observedBehavior": "Application fails to respond and throws a JavaScript syntax error.",
+  "expectedBehavior": "Form submission should complete successfully without errors.",
+  "errorLogs": [
+    {
+      "type": "SyntaxError",
+      "message": "Unexpected token '<'",
+      "sourceFile": "app.js",
+      "lineNumber": 12,
+      "columnNumber": 5
+    }
+  ],
   "userAction": "Clicked submit button",
-  "timestamp": "2026-01-10T10:21:45Z"
+  "artifacts": {
+    "video": "bug-report.webm",
+    "snapshot": "bug-snapshot.png"
+  },
+  "timestamp": "2026-01-10T10:35:00Z"
 }
