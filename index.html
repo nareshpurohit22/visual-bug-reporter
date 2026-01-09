@@ -3,26 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SnapBug - Visual Reporter</title>
+    <title>Pro Bug Reporter - Live Web Version</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="manifest" href="manifest.json">
 </head>
 <body>
     <div class="container">
-        <h1>SnapBug Pro</h1>
-        <p>Record and capture bugs for developers.</p>
+        <h1>SnapBug Web</h1>
+        <p>Record and capture bugs directly from your browser.</p>
 
         <div class="form-group">
             <label>Bug Title</label>
-            <input type="text" id="bugTitle" placeholder="What went wrong?">
+            <input type="text" id="bugTitle" placeholder="Enter bug name...">
         </div>
 
         <div class="form-group">
             <label>Severity</label>
             <select id="severity">
-                <option value="Low">Low (Visual Glitch)</option>
-                <option value="Medium">Medium (Functionality)</option>
-                <option value="High">High (Crash/Data)</option>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
             </select>
         </div>
 
@@ -31,26 +30,20 @@
             <button id="downloadBtn" class="secondary-btn" disabled>Download Report</button>
         </div>
 
-        <div id="status">Ready to test</div>
+        <div id="status">Ready</div>
 
         <div class="report-preview">
-            <h3>Console & System Logs</h3>
-            <pre id="jsonPreview">{ "status": "No logs captured yet..." }</pre>
+            <h3>Captured Logs</h3>
+            <pre id="jsonPreview">{ "status": "Waiting for recording..." }</pre>
         </div>
     </div>
 
     <script src="app.js"></script>
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js').catch(err => console.error(err));
-            });
-        }
-    </script>
 </body>
 </html>
 
             
+
 
 
 
