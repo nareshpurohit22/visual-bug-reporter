@@ -62,45 +62,53 @@ document.getElementById('downloadBtn').addEventListener('click', () => {
     }
 
     document.getElementById('downloadBtn').addEventListener('click', () => {
-    const reportText = document.getElementById('jsonPreview').innerText;
-
-    // 1. Convert JSON Text to PNG Image
+    const reportData = JSON.parse(document.getElementById('jsonPreview').innerText);
+    
+    // 1. Create a Professional PNG Report
     const canvas = document.getElementById('reportCanvas');
     const ctx = canvas.getContext('2d');
-    
-    // Set image size
-    canvas.width = 600;
-    canvas.height = 800;
-    
-    // Draw Background
-    ctx.fillStyle = "#2f3542";
+    canvas.width = 800;
+    canvas.height = 600;
+
+    // Design the PNG (Dark Theme)
+    ctx.fillStyle = "#1e1e1e"; // Background
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     
-    // Draw Text
-    ctx.fillStyle = "#7bed9f";
-    ctx.font = "16px monospace";
-    const lines = reportText.split('\n');
-    lines.forEach((line, i) => {
-        ctx.fillText(line, 20, 40 + (i * 20));
+    ctx.fillStyle = "#4ec9b0"; // Title Color
+    ctx.font = "bold 24px Courier New";
+    ctx.fillText("SNAPBUG VISUAL REPORT", 40, 60);
+
+    ctx.fillStyle = "#d4d4d4"; // Text Color
+    ctx.font = "16px Courier New";
+    ctx.fillText(`Title: ${reportData.title || 'N/A'}`, 40, 110);
+    ctx.fillText(`Severity: ${reportData.severity || 'N/A'}`, 40, 140);
+    
+    ctx.fillStyle = "#f44747"; // Error Log Color
+    ctx.fillText("Technical Logs:", 40, 190);
+    
+    let yOffset = 220;
+    reportData.logs.forEach(log => {
+        ctx.fillText(`[${log.time}] ${log.message}`, 40, yOffset);
+        yOffset += 25;
     });
 
-    // Download the PNG
-    const pngUrl = canvas.toDataURL("image/png");
+    // Download PNG
     const pngLink = document.createElement('a');
-    pngLink.href = pngUrl;
-    pngLink.download = 'bug-report-visual.png';
+    pngLink.download = 'technical-snapshot.png';
+    pngLink.href = canvas.toDataURL("image/png");
     pngLink.click();
 
-    // 2. Also Download the Video
+    // 2. Download the Video
     if (recordedChunks.length > 0) {
         const videoBlob = new Blob(recordedChunks, { type: 'video/webm' });
-        const videoUrl = URL.createObjectURL(videoBlob);
         const videoLink = document.createElement('a');
-        videoLink.href = videoUrl;
         videoLink.download = 'bug-video.webm';
+        videoLink.href = URL.createObjectURL(videoBlob);
         videoLink.click();
     }
 });
-
+   
+    
     // 2. Download the JSON Report (The Error Bugs)
     
+
