@@ -1,15 +1,13 @@
 {
-  "name": "Visual Bug Reporter Pro",
-  "short_name": "BugReporter",
+  "name": "SnapBug Visual Reporter",
+  "short_name": "SnapBug",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#2563eb",
-  "icons": [
-    {
-      "src": "https://cdn-icons-png.flaticon.com/512/1443/1443015.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ]
+  "theme_color": "#1a73e8",
+  "icons": [{
+    "src": "https://cdn-icons-png.flaticon.com/512/1443/1443015.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }]
 }
