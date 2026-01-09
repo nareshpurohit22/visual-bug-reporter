@@ -51,11 +51,24 @@ document.getElementById('startBtn').addEventListener('click', async () => {
 });
 
 document.getElementById('downloadBtn').addEventListener('click', () => {
-    const blob = new Blob(recordedChunks, { type: 'video/webm' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'bug-report-video.webm';
-    a.click();
+    // 1. Download the Video File
+    if (recordedChunks.length > 0) {
+        const videoBlob = new Blob(recordedChunks, { type: 'video/webm' });
+        const videoUrl = URL.createObjectURL(videoBlob);
+        const videoLink = document.createElement('a');
+        videoLink.href = videoUrl;
+        videoLink.download = 'bug-video.webm';
+        videoLink.click();
+    }
+
+    // 2. Download the JSON Report (The Error Bugs)
+    const reportText = document.getElementById('jsonPreview').innerText;
+    const jsonBlob = new Blob([reportText], { type: 'application/json' });
+    const jsonUrl = URL.createObjectURL(jsonBlob);
+    const jsonLink = document.createElement('a');
+    jsonLink.href = jsonUrl;
+    jsonLink.download = 'bug-report.json';
+    jsonLink.click();
 });
+
 
