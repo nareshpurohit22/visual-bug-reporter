@@ -97,8 +97,7 @@ document.getElementById('downloadBtn').addEventListener('click', () => {
     pngLink.download = 'technical-snapshot.png';
     pngLink.href = canvas.toDataURL("image/png");
     pngLink.click();
-
-    // 2. Download the Video
+// 2. Download the Video
     if (recordedChunks.length > 0) {
         const videoBlob = new Blob(recordedChunks, { type: 'video/webm' });
         const videoLink = document.createElement('a');
@@ -106,9 +105,12 @@ document.getElementById('downloadBtn').addEventListener('click', () => {
         videoLink.href = URL.createObjectURL(videoBlob);
         videoLink.click();
     }
-});
-   
-    
-    // 2. Download the JSON Report (The Error Bugs)
-    
 
+    // 3. Download the JSON Report (The Technical Bug Data)
+    const reportText = document.getElementById('jsonPreview').innerText;
+    const jsonBlob = new Blob([reportText], { type: 'application/json' });
+    const jsonLink = document.createElement('a');
+    jsonLink.download = 'technical-bug-report.json';
+    jsonLink.href = URL.createObjectURL(jsonBlob);
+    jsonLink.click();
+}); // This closing bracket must be the very last thing in your script
